@@ -1,0 +1,107 @@
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+{% load static %}
+<head>
+<title>AmErA Online</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+ <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	 <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+      <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script src="{% static 'js/jquery-1.8.1.min.js' %}" type='text/javascript'></script>
+<script src="{% static 'js/jquery.kwicks.js' %}" type='text/javascript'></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type='text/javascript'>
+	$(function() {
+	$('.kwicks').kwicks({
+		maxSize : 250,
+		spacing : 5,
+		behavior: 'menu'
+		});
+	});
+</script>
+<script>
+         $(function() {
+            $( "#accordion-6" ).accordion({
+                  create: function (event, ui) {
+                     $("span#result").html ($("span#result").html () + "<b>Created</b><br>");
+                 },
+                  beforeActivate : function (event, ui)
+                  {
+                     $("span#result").html ($("span#result").html () + ", <b>beforeActivate</b><br>");
+                  },
+                  activate: function (event, ui) {
+                     $("span#result").html ($("span#result").html () + "<b>activate</b><br>");
+                  }
+            });
+         });
+      </script>
+      <style>
+         #accordion-6{font-size: 14px;}
+      </style>
+</head>
+<body >
+<div class="header-bg">
+<div class="wrap">
+	<div class="header">
+		<div class="logo">
+		  		<a href="index.html"><img src="{% static 'images/mylogo.png' %}"> </a>
+		 </div>
+		<div class="menu">
+			<ul class='kwicks kwicks-horizontal'>
+				<li class="active"><a href="/amera/">Home</a></li>
+				<li><a href="/find/">Find Contact</a></li>
+				<li><a href="/allcontacts/">All Contacts</a></li>
+				<li><a href="/contact/">Add Contact</a></li>
+			</ul>
+	 </div>
+	 <div class="clear"></div>
+	</div>
+</div>
+</div>
+
+<!--  
+-->	
+
+<div class="container">
+  <h2>All Contacts</h2>
+           
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Setting</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for contact in contacts %}
+      <tr class="success">
+        <td>{{contact.name}}</td>
+        <td>{{contact.number}}</td>
+        <td><a href="/del/{{contact.id}}">Delete</a>/<a href="/update/{{contact.id}}">Update</a></td>
+      </tr>
+     {% endfor %}
+    </tbody>
+  </table>
+</div>
+<!---End-content---->
+	<div class="clear"> </div>
+</div>
+
+</body>
+</html>
