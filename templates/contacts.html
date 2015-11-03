@@ -83,12 +83,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <div class="container">
   <h2>All Contacts</h2>
            
-  <table class="table">
+  <table class="table" style="width:80%">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Phone</th>
-        <th>Setting</th>
+        <th width="20%">Name</th>
+        <th width="20%">Phone</th>
+        <th width="20%">Setting</th>
       </tr>
     </thead>
     <tbody>
@@ -96,7 +96,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       <tr class="success">
         <td>{{contact.name}}</td>
         <td>{{contact.number}}</td>
-        <td><a href="/del/{{contact.id}}">Delete</a>/<a href="/update/{{contact.id}}">Update</a></td>
+        <td><a href="/del/{{contact.id}}">Delete</a>/<a href="/update/{{contact.id}}">Update</a>/<a href="/contact/">Add</a></td>
       </tr>
      {% endfor %}
     </tbody>

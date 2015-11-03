@@ -24,6 +24,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		});
 	});
 </script>
+<SCRIPT TYPE="text/javascript"> 
+ function numbersonly(myfield, e, dec) 
+ {
+  var key;
+   var keychar; 
+   if (window.event)
+    key = window.event.keyCode; 
+    else if (e)
+     key = e.which; 
+     else return true;
+      keychar = String.fromCharCode(key);
+       if ((key==null) || (key==0) || (key==8) || (key==9) || (key==13) || (key==27) ) return true; 
+        else if ((("0123456789").indexOf(keychar) > -1)) 
+        return true; 
+         else if (dec && (keychar == ".")) 
+         {
+          myfield.form.elements[dec].focus();
+           return false; 
+           }
+            else return false; 
+        } 
+         </SCRIPT>
 </head>
 <body >
 <div class="header-bg">
@@ -50,23 +72,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						
 				<div class="col span_2_of_3">
 				  <div class="contact-form">
+				  {% if test == "this number is already exists" %}
+				  <div>{{test}}</div>
+				  {% endif %}
 				  	<h3>Friend information</h3>
 				  	{% if role == "add" %}
 					      <form method="POST" action="/addcontact/">
 					      {% csrf_token %}
 					    	<div>
 						    	<span><label>NAME</label></span>
-						    	<span><input name="userName" type="text" class="textbox"></span>
+						    	<span><input name="userName" type="text" required  class="textbox"></span>
 						    </div>
 						  
 						    <div>
 						     	<span><label>MOBILE</label></span>
-						    	<span><input name="userPhone" type="text" class="textbox"></span>
+						    	<span><input name="userPhone" required type="text" onKeyPress="return numbersonly(this, event)" class="textbox"></span>
 						    </div>
 						    
 						   <div>
 						   		<span class="button-wrap"><input type="submit" value="Add Contact"></span>
 						  </div>
+						 
 					    </form>
 					    {% else %}
 					   	      <form method="POST" action="/upcontact/{{uid}}">
@@ -78,7 +104,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						  
 						    <div>
 						     	<span><label>MOBILE</label></span>
-						    	<span><input name="userPhone" type="text" value="{{number}}"placeholder="{{number}}"class="textbox"></span>
+						    	<span><input name="userPhone" type="text" onKeyPress="return numbersonly(this, event)" value="{{number}}"placeholder="{{number}}"class="textbox"></span>
 						    </div>
 						    
 						   <div>

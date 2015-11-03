@@ -24,6 +24,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		});
 	});
 </script>
+<SCRIPT TYPE="text/javascript"> 
+ function numbersonly(myfield, e, dec) 
+ {
+  var key;
+   var keychar; 
+   if (window.event)
+    key = window.event.keyCode; 
+    else if (e)
+     key = e.which; 
+     else return true;
+      keychar = String.fromCharCode(key);
+       if ((key==null) || (key==0) || (key==8) || (key==9) || (key==13) || (key==27) ) return true; 
+        else if ((("0123456789").indexOf(keychar) > -1)) 
+        return true; 
+         else if (dec && (keychar == ".")) 
+         {
+          myfield.form.elements[dec].focus();
+           return false; 
+           }
+            else return false; 
+        } 
+         </SCRIPT>
     <script type="text/javascript">
         $(document).ready(function() {
             $("#button").click(function() {
@@ -84,7 +106,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						  
 						   <div>
 						     	<span><label> OR MOBILE</label></span>
-						    	<span><input name="userPhone" type="text" placeholder="Enter number"class="textbox"></span>
+						    	<span><input name="userPhone" type="text" onKeyPress="return numbersonly(this, event)" placeholder="Enter number"class="textbox"></span>
 						    </div>
 						    <div>
 						   		<span class="button-wrap"><input type="submit" value="find contact"></span>

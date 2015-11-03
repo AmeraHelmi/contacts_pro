@@ -9,17 +9,23 @@ def start(request):
 	return render (request,'index.html')
 
 
-def contact(request):
+def contact(request,test="default"):
 	role="add"
-	return render(request,'contact.html',{'role':role})
+	return render(request,'contact.html',{'role':role,'test':test})
 
 def addcontact(request):
 	if request.method == 'POST':
 		uname=request.POST.get("userName")
 		unumber=request.POST.get("userPhone")
-		obj=Contact(name=uname,number=unumber)
-		obj.save()
-		return allcontacts(request)
+		if Contact.objects.filter(number=unumber).exists():
+			role="this number is already exists"
+			return contact(request,role)
+		else:
+
+			obj=Contact(name=uname,number=unumber)
+			obj.save()
+			return allcontacts(request)
+
 
 def update_contact(request,uid):
 	obj=Contact.objects.get(id=uid)
@@ -37,7 +43,7 @@ def up_contact(request,uid):
 		obj.name=uname
 		obj.number=unumber
 		obj.save()
-		contacts=Contact.objects.all()
+		contacts=Contact.objects.all().order_by('name')
 		return render(request,'contacts.html',{'contacts':contacts})
 
 def find(request):
@@ -66,7 +72,7 @@ def findcontact(request):
 
 
 def allcontacts(request):
-	contacts=Contact.objects.all()
+	contacts=Contact.objects.all().order_by('name')
 	return render(request,'contacts.html',{'contacts':contacts})
 
 
